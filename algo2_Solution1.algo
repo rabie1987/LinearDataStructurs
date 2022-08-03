@@ -1,0 +1,54 @@
+ALGORITHM Sum_Solution1
+VAR
+    set1,set2 : ARRAY_OF INTEGER[50];
+    sum_dif,sum_Identq,j,i:=INTEGER;
+    test:=BOOLEAN;
+BEGIN
+    sum_dif:=0;
+    Read(set1);
+    Read(set2);
+//Adding the distinct element to set1 to sum
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+    test := false;
+      FOR j FROM 0 TO set2.length-1 STEP 1  DO
+        IF (set[i]=set2[j] ) THEN
+           test:= true;
+        END_IF
+      END_FOR
+     IF (test=false) THEN
+         sum_dif=sum_dif+set1[i];
+     END_IF
+END_FOR
+//Adding the distinct element to set2 to sum  
+    FOR j FROM 0 TO set2.length STEP 1  DO
+     test := false;
+     FOR i FROM 0 TO set1.length STEP step  DO
+         
+     
+        IF (set[j]=set2[i]) THEN
+                 test:= true;
+        END_IF
+      END_FOR
+     IF (test=false) THEN
+         sum_dif=sum_dif+set1[i];
+     END_IF
+END_FOR
+// Result
+Write("the sum of all the distinct elements is:",sum_dif)
+// the sum of overlapping elements in two setes
+sum_Identq:=0;
+FOR i FROM 0 TO set1.length-1 STEP 1  DO
+    test:=true;
+     FOR j FROM 0 TO set2.length STEP 1  DO
+       IF (set[i]=set2[j]) THEN
+                 test:= false;
+        END_IF
+      END_FOR
+     IF (test=false) THEN
+         sum_Identq=sum_Identq+set1[i]*2;
+     END_IF
+END_FOR  
+ 
+// Result
+Write("the sum of overlapping elements in two setes is:",sum_Identq)
+END
