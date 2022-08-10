@@ -1,0 +1,30 @@
+ALGORITHM Sum_Solution2
+VAR
+      set1,set2 : ARRAY_OF INTEGER [50];
+      set_keys : ARRAY_OF INTEGER [100];
+      htab: HASH_TABLE<INTEGER,INTEGER>;
+      i,j,sumDif,sumIden,nb_occ:INTEGER;
+BEGIN
+   Read(set1);
+   Read(set2);
+   sumDif,sumIden:=0;
+   FOR i FROM 0 TO set1.length STEP 1  DO
+       htab.insert(set1[i],1);
+   END_FOR
+   FOR j FROM 0 TO set2.length STEP 1 DO
+       nb_occ:=1;
+       IF (htab.lookup(set2[i])=true ) THEN
+           htab.insert(set2[i],nb_occ+1);
+           ELSE
+               htab.insert(set2[i],1);   
+       END_IF
+   END_FOR
+   set_keys:=htab.getkeys();
+   FOR i FROM 0 TO  set_keys.length STEP 1  DO
+       IF (htab.get( set_keys[i])=1) THEN
+           sumDif=sumDif+set_keys[i];
+        ELSE
+           sumIden=sumIden+( set_keys[i]*2);
+       END_IF
+   END_FOR
+END
